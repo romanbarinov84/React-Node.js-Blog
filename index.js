@@ -13,26 +13,10 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
 
-app.post("/auth/login", (req, res) => {
-  console.log(req.body);
 
- if(req.body.email === "test@test.ua"){
-   }
-  const token = jwt.sign({
-    email: req.body.email,
-    fullName: "Roman Barinov",
-  }, "secret123",
-);
-
-  
-  res.json({
-    success:true,
-    token,
-  })
+app.post("/auth/register", (req, res) => {
+ 
 });
 
 
