@@ -55,7 +55,7 @@ export const register = async (req, res) => {
      const user = await UserModel.findOne({email:req.body.email});
   
      if(!user){
-      return req.status(404).json({
+      return res.status(404).json({
         message: "Пользователь не найден"
       })
      }
@@ -92,27 +92,22 @@ export const register = async (req, res) => {
 
 
   export const getMe =  async (req, res) => {
-    try{
+    try {
       const user = await UserModel.findById(req.userId);
   
-      if(!user){
+      if (!user) {
         return res.status(404).json({
           message: "Пользователь не найден"
-        })
+        });
       }
-        const {passwordHash, ...userData} = user._doc;
   
-        res
-  
-  
-  
+      const { passwordHash, ...userData } = user._doc;
       res.json({
         ...userData,
-        
       });
-    }catch(err){
-  res.status(500).json({
-    message: "Нет доступа"
-  })
+    } catch (err) {
+      res.status(500).json({
+        message: "Нет доступа",
+      });
     }
-  }
+  };
