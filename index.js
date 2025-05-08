@@ -23,7 +23,7 @@ app.get("/posts", postControllers.getAll);
 app.get("/posts/:id",postControllers.getOne);
 app.post("/posts",checkAuth,postCreateValidation, postControllers.create);
 app.delete("/posts/:id",checkAuth, postControllers.remove);
-//app.patch("/posts" , postControllers.update);
+app.patch("/posts/:id" ,checkAuth, postControllers.update);
 
 
 app.listen(4444, (err) => {
